@@ -1,0 +1,14 @@
+CREATE TABLE bahmni_logs (
+  bahmni_log_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  user_id INT(11),
+  patient_id INT(11) NOT NULL,
+  level VARCHAR(10) NOT NULL,
+  logger_class VARCHAR(100) NOT NULL,
+  event VARCHAR(20) NOT NULL,
+  message LONGBLOB NOT NULL,
+  date_created DATETIME NOT NULL,
+  uuid VARCHAR(38) NOT NULL UNIQUE,
+
+  FOREIGN KEY fk_patient_id(patient_id) REFERENCES patient(patient_id),
+  FOREIGN KEY fk_user_id(user_id) REFERENCES users(user_id)
+);
